@@ -1,4 +1,3 @@
-import { m } from 'framer-motion'
 import React, { useEffect, memo } from 'react'
 import Animated, {
   Easing,
@@ -32,6 +31,7 @@ export default function AnimatedCheckbox(props: Props) {
 
   useEffect(() => {
     progress.value = withTiming(checked ? 1 : 0, {
+      duration: checked ? 300 : 100,
       easing: Easing.linear
     })
   }, [checked])
