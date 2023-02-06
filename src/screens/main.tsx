@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { Box, Center, Text, VStack, useColorModeValue } from 'native-base'
 import ThemeToggle from '../components/ThemeToggle'
-import AnimatedCheckbox from '../components/AnimatedCheckbox'
 import { Pressable } from 'react-native'
+import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 
 export default function MainScreen() {
   const [checked, setChecked] = useState(false)
@@ -20,7 +20,7 @@ export default function MainScreen() {
       <VStack space={5} alignItems="center">
         <Box w="100px" h="100px">
           <Pressable onPress={handlePressCheckbox}>
-            <AnimatedCheckbox checked={checked} />
+            <AnimatedCheckbox checked={checked} highlightColor="#4444ff" checkmarkColor="#ffffff" boxOutlineColor="#000000" />
           </Pressable>
         </Box>
         <Box p={10} bg={useColorModeValue('red.500', 'yellow.500')}>
