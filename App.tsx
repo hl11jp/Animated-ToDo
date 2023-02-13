@@ -1,10 +1,11 @@
 import AppContainer from './src/components/AppContainer'
-import MainScreen from './src/screens/main'
+import 'react-native-gesture-handler'
+import Navigator from './src'
 
 export default function App() {
   return (
     <AppContainer>
-      <MainScreen />
+      <Navigator />
     </AppContainer>
   )
 }
