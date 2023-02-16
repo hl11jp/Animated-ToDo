@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import { Box, Center, Text, VStack, useColorModeValue } from 'native-base'
+import { Center, VStack } from 'native-base'
 import ThemeToggle from '../components/ThemeToggle'
-import { Pressable } from 'react-native'
-import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 import TaskItem from '../components/TaskItem'
 
 export default function MainScreen() {
