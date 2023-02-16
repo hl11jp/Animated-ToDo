@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Pressable } from 'react-native'
 import {
   Box,
@@ -6,18 +6,24 @@ import {
   useColorModeValue,
   useTheme,
   HStack,
-  Text
+  Icon
 } from 'native-base'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 import AnimatedTaskLabel from './AnimatedTaskLabel'
+import SwipableView from './SwipableView'
+import {Feather} from '@expo/vector-icons'
+import { PanGestureHandlerProps } from 'react-native-gesture-handler'
 
-type Props = {
+interface Props extends Pick<PanGestureHandlerProps, 'simultaneousHandlers'> {
   isDone: boolean
   onToggleCheckbox?: () => void
+  onPressLabel?: () => void
+  onRemove?: () => void
+  subject: string
 }
 
 export default function TaskItem(props: Props) {
-  const { isDone, onToggleCheckbox } = props
+  const { isDone, onToggleCheckbox, subject, onPressLabel, onRemove, simultaneousHandlers } = props
   const theme = useTheme()
   const highlightColor = themeTools.getColor(
     theme,
@@ -41,6 +47,11 @@ export default function TaskItem(props: Props) {
   )
 
   return (
+    <SwipableView simultaneousHandlers={simultaneousHandlers}
+      onSwipeLeft={onRemove}
+      backView={
+        <Box w="full" h="full" bg="red.500" alignItems="flex-end" justifyContent="center" pr={4}><Icon color="white" as={<Feather name='trash-2' />} size="sm" /></Box>
+      }>
     <HStack
       alignItems="center"
       w="full"
@@ -62,9 +73,11 @@ export default function TaskItem(props: Props) {
         textColor={activeTextColor}
         inactiveTextColor={doneTextColor}
         strikethrough={isDone}
+        onPress={onPressLabel}
       >
-        Task Item
+        {subject}
       </AnimatedTaskLabel>
     </HStack>
+    </SwipableView>
   )
 }
